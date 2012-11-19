@@ -32,8 +32,9 @@ module Barber
     end
 
     def enter(visitor)
+      sofa = false
+      
       @sofas_mutex.synchronize do
-        sofa = false
         @sofas.cycle { |s|
           sofa = s.freeze_place
           break if sofa
