@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     barber (1.0.0)
+      semaphore
 
 GEM
   remote: https://rubygems.org/
@@ -9,6 +10,7 @@ GEM
     ansi (1.4.3)
     minitest (4.1.0)
     rake (0.9.2.2)
+    semaphore (1.0.0)
     turn (0.9.6)
       ansi
 
