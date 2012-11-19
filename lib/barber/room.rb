@@ -33,7 +33,7 @@ module Barber
 
     def enter(visitor)
       sofa = false
-      
+
       @sofas_mutex.synchronize do
         @sofas.cycle { |s|
           sofa = s.freeze_place

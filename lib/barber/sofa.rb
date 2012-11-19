@@ -9,7 +9,7 @@ module Barber
       @freeze_mutex = Mutex.new
       @free_place = COUNT_PLACE
 
-      @sit_semaphore = Semaphore.new(COUNT_PLACE)
+      @freeze_mutex = Mutex.new
     end
 
     def count_place
@@ -17,22 +17,22 @@ module Barber
     end
 
     def freeze_place
-      @freeze_mutex.synchronize do
-        if has_free_place?
-          @freeze_place = true
-          return self
-        else
-          return false
-        end
+      if has_free_place?
+        @freeze_place = true
+        return self
+      else
+        return false
       end
     end
 
     def sit(visitor)
-      @sit_semaphore.synchronize do
-        @freeze_place = false
-        @free_place -= 1
+      @free_place -= 1
+      @freeze_place = false
+
+      @freeze_mutex.synchronize do
         @free_place += 1
       end
+
     end
 
     def has_free_place?
